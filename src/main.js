@@ -144,21 +144,23 @@ function animate() {
   });
 }
 
-addEventListener("click", (event) => {
-  const x = canvas.width / 2;
-  const y = canvas.height / 2;
-  const radius = 8;
-  const color = "white";
-  const angle = Math.atan2(
-    event.clientY - canvas.height / 2,
-    event.clientX - canvas.width / 2
-  );
-  const velocity = {
-    x: Math.cos(angle) * 7,
-    y: Math.sin(angle) * 7,
-  };
-  const projectile = new Projectile(x, y, radius, velocity, color);
-  projectiles.push(projectile);
+["click", "ontouchstart"].forEach((evt) => {
+  addEventListener(evt, (event) => {
+    const x = canvas.width / 2;
+    const y = canvas.height / 2;
+    const radius = 8;
+    const color = "white";
+    const angle = Math.atan2(
+      event.clientY - canvas.height / 2,
+      event.clientX - canvas.width / 2
+    );
+    const velocity = {
+      x: Math.cos(angle) * 7,
+      y: Math.sin(angle) * 7,
+    };
+    const projectile = new Projectile(x, y, radius, velocity, color);
+    projectiles.push(projectile);
+  });
 });
 
 function initGame() {
